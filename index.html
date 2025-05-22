@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="gu"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">જૈન દર્શન ઇન્ટરેક્ટિવ લર્નિંગ</title>
+    <meta id="metaDescription" name="description" content="જૈન દર્શન પર ઇન્ટરેક્ટિવ લર્નિંગ મોડ્યુલો માટેનું એક ઇન્ડેક્સ પેજ, જેમાં અંગ્રેજી અને ગુજરાતીમાં કર્મ અને તત્ત્વના સિદ્ધાંતોનો સમાવેશ થાય છે.">
+    <meta id="metaKeywords" name="keywords" content="જૈન ધર્મ, જૈન, કર્મ, તત્ત્વ, દર્શન, ઇન્ટરેક્ટિવ લર્નિંગ, ગુજરાતી, અંગ્રેજી, જૈન કર્મ, નવ તત્ત્વ, જૈન સિદ્ધાંતો">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f8ff; /* Light Alice Blue */
+            color: #333;
+            margin: 0;
+            padding: 1rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-top: 1rem; /* Reduced margin for language buttons */
+        }
+        .language-switcher {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border: 1px solid #007bff;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .lang-btn.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .lang-btn:not(.active) {
+            background-color: white;
+            color: #007bff;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            font-size: 2.25rem; /* Tailwind text-4xl */
+            font-weight: 700; /* Tailwind font-bold */
+            color: #007bff; /* Primary Blue */
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            font-size: 1.125rem; /* Tailwind text-lg */
+            color: #555;
+        }
+        .link-card {
+            background-color: #e6f7ff; /* Light Cyan Blue */
+            border: 1px solid #b3e0ff; /* Lighter Blue Border */
+            border-radius: 0.75rem; /* Tailwind rounded-xl */
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .link-card h2 {
+            font-size: 1.5rem; /* Tailwind text-2xl */
+            font-weight: 600; /* Tailwind font-semibold */
+            color: #0056b3; /* Darker Blue */
+            margin-bottom: 0.5rem;
+        }
+        .link-card p {
+            font-size: 1rem; /* Tailwind text-base */
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .link-card a {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: #007bff; /* Primary Blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 0.375rem; /* Tailwind rounded-md */
+            font-weight: 500; /* Tailwind font-medium */
+            transition: background-color 0.3s ease;
+        }
+        .link-card a:hover {
+            background-color: #0056b3; /* Darker Blue on hover */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.875rem; /* Tailwind text-sm */
+            color: #777;
+        }
+        /* Ensure Inter font is loaded if not available system-wide */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        /* Specific font for Gujarati if needed, Inter handles it well generally */
+        [lang="gu"] body, [lang="gu"] .container {
+            font-family: 'Inter', 'Noto Sans Gujarati', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-switcher">
+            <button id="langBtnGu" class="lang-btn active" onclick="setLanguage('gu')">ગુજરાતી</button>
+            <button id="langBtnEn" class="lang-btn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <header class="header">
+            <h1 id="mainHeading">જૈન દર્શન ઇન્ટરેક્ટિવ લર્નિંગ</h1>
+            <p id="subHeading">આ ઇન્ટરેક્ટિવ મોડ્યુલો દ્વારા જૈન ધર્મના ગહન સિદ્ધાંતોનું અન્વેષણ કરો.</p>
+        </header>
+
+        <div id="linksContainer">
+            <div class="link-card" data-content-key="karmaEng">
+                <h2 id="karmaEngTitle">Principles of Jain Karma (English)</h2>
+                <p id="karmaEngDesc">An interactive tutorial explaining the 8 types of Karma (Jnanavaraniya, Darshanavaraniya, Vedaniya, Mohaniya, Ayushya, Nama, Gotra, Antaraya) in English, with examples and a quiz to test your understanding.</p>
+                <a id="karmaEngLink" href="./8-karama-eng.html" target="_blank">Open English Karma Tutorial</a>
+            </div>
+
+            <div class="link-card" data-content-key="karmaGuj">
+                <h2 id="karmaGujTitle">જૈન કર્મના સિદ્ધાંતો (ગુજરાતી)</h2>
+                <p id="karmaGujDesc">જૈન ધર્મના ૮ કર્મો (જ્ઞાનાવરણીય, દર્શનાવરણીય, વેદનીય, મોહનીય, આયુષ્ય, નામ, ગોત્ર, અંતરાય) ગુજરાતીમાં ઉદાહરણો અને તમારી સમજ ચકાસવા માટે ક્વિઝ સાથેનું ઇન્ટરેક્ટિવ ટ્યુટોરિયલ.</p>
+                <a id="karmaGujLink" href="./8-karama-guj.html" target="_blank">ગુજરાતી કર્મ ટ્યુટોરિયલ ખોલો</a>
+            </div>
+
+            <div class="link-card" data-content-key="tattvaGuj">
+                <h2 id="tattvaGujTitle">નવ તત્ત્વ ટ્યુટોરિયલ (ગુજરાતી)</h2>
+                <p id="tattvaGujDesc">જૈન દર્શનના ૯ મૂળભૂત તત્ત્વો (જીવ, અજીવ, પુણ્ય, પાપ, આશ્રવ, સંવર, બંધ, નિર્જરા, મોક્ષ) ગુજરાતીમાં સમજાવતું ઇન્ટરેક્ટિવ ટ્યુટોરિયલ, જેમાં તમારી સમજ ચકાસવા માટે ક્વિઝ પણ છે.</p>
+                <a id="tattvaGujLink" href="./9-tattva-guj-mini.html" target="_blank">નવ તત્ત્વ ટ્યુટોરિયલ ખોલો</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p id="footerText">મનીષ વી. શાહ : WhatsApp : 94299 26447 : વડોદરા</p>
+    </footer>
+
+    <script>
+        // Translations object
+        const translations = {
+            pageTitle: {
+                en: "Jain Philosophy Interactive Learning",
+                gu: "જૈન દર્શન ઇન્ટરેક્ટિવ લર્નિંગ"
+            },
+            metaDescription: {
+                en: "An index page for interactive learning modules on Jain philosophy, including Karma and Tattva concepts in English and Gujarati.",
+                gu: "જૈન દર્શન પર ઇન્ટરેક્ટિવ લર્નિંગ મોડ્યુલો માટેનું એક ઇન્ડેક્સ પેજ, જેમાં અંગ્રેજી અને ગુજરાતીમાં કર્મ અને તત્ત્વના સિદ્ધાંતોનો સમાવેશ થાય છે."
+            },
+            metaKeywords: {
+                en: "Jainism, Jain, Karma, Tattva, Philosophy, Interactive Learning, Gujarati, English, Jain Karma, Nav Tattva, Jain Principles",
+                gu: "જૈન ધર્મ, જૈન, કર્મ, તત્ત્વ, દર્શન, ઇન્ટરેક્ટિવ લર્નિંગ, ગુજરાતી, અંગ્રેજી, જૈન કર્મ, નવ તત્ત્વ, જૈન સિદ્ધાંતો"
+            },
+            mainHeading: {
+                en: "Jain Philosophy Interactive Learning",
+                gu: "જૈન દર્શન ઇન્ટરેક્ટિવ લર્નિંગ"
+            },
+            subHeading: {
+                en: "Explore the profound concepts of Jainism through these interactive modules.",
+                gu: "આ ઇન્ટરેક્ટિવ મોડ્યુલો દ્વારા જૈન ધર્મના ગહન સિદ્ધાંતોનું અન્વેષણ કરો."
+            },
+            karmaEngTitle: {
+                en: "Principles of Jain Karma (English)",
+                gu: "જૈન કર્મના સિદ્ધાંતો (અંગ્રેજી)" // Title in Gujarati for the English module
+            },
+            karmaEngDesc: {
+                en: "An interactive tutorial explaining the 8 types of Karma (Jnanavaraniya, Darshanavaraniya, Vedaniya, Mohaniya, Ayushya, Nama, Gotra, Antaraya) in English, with examples and a quiz to test your understanding.",
+                gu: "અંગ્રેજીમાં ૮ પ્રકારના કર્મો (જ્ઞાનાવરણીય, દર્શનાવરણીય, વેદનીય, મોહનીય, આયુષ્ય, નામ, ગોત્ર, અંતરાય) સમજાવતું ઇન્ટરેક્ટિવ ટ્યુટોરિયલ, જેમાં ઉદાહરણો અને તમારી સમજ ચકાસવા માટે ક્વિઝ છે."
+            },
+            karmaEngLink: {
+                en: "Open English Karma Tutorial",
+                gu: "અંગ્રેજી કર્મ ટ્યુટોરિયલ ખોલો"
+            },
+            karmaGujTitle: {
+                en: "Principles of Jain Karma (Gujarati)", // Title in English for the Gujarati module
+                gu: "જૈન કર્મના સિદ્ધાંતો (ગુજરાતી)"
+            },
+            karmaGujDesc: {
+                en: "An interactive tutorial in Gujarati on the 8 types of Karma (Jnanavaraniya, Darshanavaraniya, Vedaniya, Mohaniya, Ayushya, Nama, Gotra, Antaraya) with examples and a quiz to test your understanding.",
+                gu: "જૈન ધર્મના ૮ કર્મો (જ્ઞાનાવરણીય, દર્શનાવરણીય, વેદનીય, મોહનીય, આયુષ્ય, નામ, ગોત્ર, અંતરાય) ગુજરાતીમાં ઉદાહરણો અને તમારી સમજ ચકાસવા માટે ક્વિઝ સાથેનું ઇન્ટરેક્ટિવ ટ્યુટોરિયલ."
+            },
+            karmaGujLink: {
+                en: "Open Gujarati Karma Tutorial",
+                gu: "ગુજરાતી કર્મ ટ્યુટોરિયલ ખોલો"
+            },
+            tattvaGujTitle: {
+                en: "Nav Tattva Tutorial (Gujarati)", // Title in English for the Gujarati module
+                gu: "નવ તત્ત્વ ટ્યુટોરિયલ (ગુજરાતી)"
+            },
+            tattvaGujDesc: {
+                en: "An interactive tutorial in Gujarati explaining the 9 fundamental Tattvas (Jiva, Ajiva, Punya, Papa, Asrava, Samvara, Bandha, Nirjara, Moksha) of Jain philosophy, including a quiz to test your understanding.",
+                gu: "જૈન દર્શનના ૯ મૂળભૂત તત્ત્વો (જીવ, અજીવ, પુણ્ય, પાપ, આશ્રવ, સંવર, બંધ, નિર્જરા, મોક્ષ) ગુજરાતીમાં સમજાવતું ઇન્ટરેક્ટિવ ટ્યુટોરિયલ, જેમાં તમારી સમજ ચકાસવા માટે ક્વિઝ પણ છે."
+            },
+            tattvaGujLink: {
+                en: "Open Nav Tattva Tutorial",
+                gu: "નવ તત્ત્વ ટ્યુટોરિયલ ખોલો"
+            },
+            footerText: {
+                en: "Manish V. Shah : WhatsApp : 94299 26447 : Vadodara",
+                gu: "મનીષ વી. શાહ : WhatsApp : 94299 26447 : વડોદરા"
+            }
+        };
+
+        // Function to set the language
+        function setLanguage(lang) {
+            document.documentElement.lang = lang; // Set lang attribute on HTML element
+
+            // Update text content based on translations
+            document.getElementById('pageTitle').textContent = translations.pageTitle[lang];
+            document.getElementById('metaDescription').content = translations.metaDescription[lang];
+            document.getElementById('metaKeywords').content = translations.metaKeywords[lang];
+            document.getElementById('mainHeading').textContent = translations.mainHeading[lang];
+            document.getElementById('subHeading').textContent = translations.subHeading[lang];
+
+            // Update link cards
+            document.getElementById('karmaEngTitle').textContent = translations.karmaEngTitle[lang];
+            document.getElementById('karmaEngDesc').textContent = translations.karmaEngDesc[lang];
+            document.getElementById('karmaEngLink').textContent = translations.karmaEngLink[lang];
+
+            document.getElementById('karmaGujTitle').textContent = translations.karmaGujTitle[lang];
+            document.getElementById('karmaGujDesc').textContent = translations.karmaGujDesc[lang];
+            document.getElementById('karmaGujLink').textContent = translations.karmaGujLink[lang];
+            
+            document.getElementById('tattvaGujTitle').textContent = translations.tattvaGujTitle[lang];
+            document.getElementById('tattvaGujDesc').textContent = translations.tattvaGujDesc[lang];
+            document.getElementById('tattvaGujLink').textContent = translations.tattvaGujLink[lang];
+
+            document.getElementById('footerText').innerHTML = translations.footerText[lang]; // Use innerHTML
+
+            // Update language button active states
+            const langBtnGu = document.getElementById('langBtnGu');
+            const langBtnEn = document.getElementById('langBtnEn');
+            if (lang === 'gu') {
+                langBtnGu.classList.add('active');
+                langBtnEn.classList.remove('active');
+            } else {
+                langBtnEn.classList.add('active');
+                langBtnGu.classList.remove('active');
+            }
+        }
+
+        // Set initial language based on HTML lang attribute (or default to Gujarati)
+        const initialLang = document.documentElement.lang || 'gu';
+        setLanguage(initialLang);
+    </script>
+</body>
+</html>

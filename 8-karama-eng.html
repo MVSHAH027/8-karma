@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles of Jain Karma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Changed font */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light Alice Blue */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
+        }
+
+        .tutorial-container {
+            width: 100%;
+            max-width: 800px; /* Max width for larger screens, will adapt to mobile */
+            height: 100vh; /* Full viewport height */
+            max-height: 450px; /* Max height for landscape mobile, can be adjusted by JS */
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            overflow: hidden; /* Content that overflows will be hidden */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .screen {
+            padding: 12px 18px; 
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+            overflow-y: auto; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .screen h2 {
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem); 
+            color: #007bff; 
+            margin-bottom: 10px; 
+        }
+
+        .screen h3 { 
+            font-size: clamp(1.1rem, 3vw, 1.6rem); 
+            color: #17a2b8; 
+            margin-top: 8px; 
+            margin-bottom: 6px; 
+        }
+        
+        .screen ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0; 
+            width: 90%;
+        }
+
+        .screen ul li {
+            font-size: clamp(0.8rem, 2.5vw, 1.35rem); 
+            margin-bottom: 7px; 
+            padding: 6px; 
+            border-radius: 7px;
+            background-color: #e6f7ff; 
+            color: #0056b3; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .screen .example {
+            font-size: clamp(0.75rem, 2.3vw, 1.2rem); 
+            color: #28a745; 
+            margin-top: 7px; 
+            padding: 6px; 
+            background-color: #e6ffe6; 
+            border-left: 3px solid #28a745; 
+            border-radius: 5px;
+            width: 90%;
+        }
+        
+        .screen p { 
+            font-size: clamp(0.8rem, 2.5vw, 1.4rem); 
+            color: #333;
+            margin-bottom: 10px; 
+        }
+        
+        .screen .quiz-question-text { 
+             font-size: clamp(0.9rem, 2.8vw, 1.4rem); 
+             color: #333; 
+             margin-bottom:12px; 
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 15px; 
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            flex-shrink: 0; 
+        }
+
+        .nav-button {
+            padding: 6px 12px; 
+            font-size: clamp(1.0rem, 2.8vw, 1.3rem); 
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px; 
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,123,255,0.2); 
+            min-width: 40px; 
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .quiz-options button {
+            display: block;
+            width: 80%;
+            max-width: 270px; 
+            padding: 9px; 
+            margin: 7px auto; 
+            font-size: clamp(0.85rem, 2.6vw, 1.25rem); 
+            background-color: #5bc0de; 
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        .quiz-options button:hover {
+            background-color: #31b0d5;
+        }
+        .quiz-options button.correct {
+            background-color: #28a745; 
+        }
+        .quiz-options button.incorrect {
+            background-color: #dc3545; 
+        }
+
+        .score-screen p {
+             font-size: clamp(0.9rem, 2.8vw, 1.5rem); 
+             color: #333;
+        }
+        .score-screen .score {
+            font-size: clamp(1.4rem, 4vw, 2.0rem); 
+            color: #ffA500; 
+            font-weight: bold;
+        }
+
+        .screen:not(:first-child) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="tutorial-container">
+        <div class="screen" id="screen-0">
+            <h2>Welcome to the Principles of Jain Karma!</h2>
+            <ul>
+                <li>Let's learn deeply about Karmas today.</li>
+                <li>What is Karma and how does it affect our lives?</li>
+                <li>Are you ready for this fun journey of knowledge?</li>
+            </ul>
+        </div>
+
+        <div class="screen" id="screen-1" style="display:none;">
+            <h2>1. Jnanavaraniya Karma (Part 1)</h2>
+            <h3>(Knowledge-Obscuring Karma)</h3>
+            <ul>
+                <li>This karma covers the knowledge quality of our soul.</li>
+                <li>Just like clouds cover the sun, this karma does not let knowledge shine.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> When you sit to study but don't understand or can't remember, it might be the effect of this karma.</p>
+        </div>
+        <div class="screen" id="screen-2" style="display:none;">
+            <h2>1. Jnanavaraniya Karma (Part 2)</h2>
+            <h3>How is this karma bound?</h3>
+            <ul>
+                <li>By disrespecting knowledge or the knowledgeable.</li>
+                <li>By being lazy in studies, or by stopping others from studying.</li>
+                <li>By damaging books or tools of knowledge.</li>
+            </ul>
+            <p class="example"><strong>Good to know:</strong> Respecting knowledge and teachers reduces the effect of this karma, and knowledge is gained quickly.</p>
+        </div>
+
+        <div class="screen" id="screen-3" style="display:none;">
+            <h2>2. Darshanavaraniya Karma (Part 1)</h2>
+            <h3>(Perception-Obscuring Karma)</h3>
+            <p>This karma covers our power to see and hear etc.</p> 
+            <ul>
+                <li>Being blind: This karma can obscure the ability to see.</li>
+                <li>Being deaf: It can also affect the ability to hear.</li>
+                <li>Feeling sleepy: Excessive or untimely sleepiness can be an effect.</li>
+            </ul>
+            </div>
+        <div class="screen" id="screen-4" style="display:none;">
+            <h2>2. Darshanavaraniya Karma (Part 2)</h2>
+            <h3>Effects of this karma:</h3>
+            <ul>
+                <li>Not being able to see clearly (Chakshu Darshanavaran - eye perception covered).</li>
+                <li>Not being able to perceive properly through other senses (Achakshu Darshanavaran - non-eye perception covered).</li>
+                <li>Sleepiness (Nidra) is also a type of this karma.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> Causing harm that makes an animal blind or deaf can bind this type of karma.</p>
+        </div>
+
+        <div class="screen" id="screen-5" style="display:none;">
+            <h2>3. Vedaniya Karma (Part 1)</h2>
+            <h3>(Feeling-Producing Karma)</h3>
+            <ul>
+                <li>This karma makes us experience happiness and sadness.</li>
+                <li>The good and bad feelings in our lives are due to this karma.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> Feeling cool in an air conditioner (Sata Vedaniya - pleasure) and feeling pain when you fall while playing (Asata Vedaniya - pain).</p>
+        </div>
+        <div class="screen" id="screen-6" style="display:none;">
+            <h2>3. Vedaniya Karma (Part 2)</h2>
+            <h3>Sata and Asata Vedaniya:</h3>
+            <ul>
+                <li><strong>Sata Vedaniya:</strong> Causes pleasant experiences. Bound by giving happiness to others, being kind.</li>
+                <li><strong>Asata Vedaniya:</strong> Causes painful experiences. Bound by causing pain to others, being harsh.</li>
+            </ul>
+            <p class="example"><strong>Remember:</strong> We receive the same kind of happiness or sadness that we give to others.</p>
+        </div>
+
+        <div class="screen" id="screen-7" style="display:none;">
+            <h2>4. Mohaniya Karma (Part 1)</h2>
+            <h3>(Deluding Karma)</h3>
+            <ul>
+                <li>This is the most powerful karma. It makes the soul forget the true path.</li>
+                <li>It makes wrong things seem right and right things seem wrong.</li>
+                <li>It creates attachment (Raga - love, liking) and aversion (Dvesha - anger, hatred).</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> Insisting a lot for a chocolate (attachment) or not eating a vegetable at all and getting angry (aversion).</p>
+        </div>
+        <div class="screen" id="screen-8" style="display:none;">
+            <h2>4. Mohaniya Karma (Part 2)</h2>
+            <h3>Darshan Mohaniya (Faith-Deluding):</h3>
+            <ul>
+                <li>Prevents faith in the true nature of the soul and true religion.</li>
+                <li>Makes us think "I am this body" or "Money is everything."</li>
+            </ul>
+            <h3>Charitra Mohaniya (Conduct-Deluding):</h3>
+            <ul>
+                <li>Stops us from practicing good conduct.</li>
+                <li>Passions like anger, ego, deceit, and greed arise due to this.</li>
+            </ul>
+        </div>
+        <div class="screen" id="screen-9" style="display:none;">
+            <h2>4. Mohaniya Karma (Part 3)</h2>
+            <h3>Kashayas (Passions - from Charitra Mohaniya):</h3>
+            <ul>
+                <li><strong>Anger (Krodh):</strong> Getting angry over small things.</li>
+                <li><strong>Ego (Maan):</strong> Feeling proud, thinking "I am the best."</li>
+                <li><strong>Deceit (Maya):</strong> Cheating, telling lies.</li>
+                <li><strong>Greed (Lobh):</strong> Craving to get more and more.</li>
+            </ul>
+            <p class="example"><strong>Be careful:</strong> These passions take away our peace and bind new karmas.</p>
+        </div>
+
+        <div class="screen" id="screen-10" style="display:none;">
+            <h2>5. Ayushya Karma (Part 1)</h2>
+            <h3>(Lifespan-Determining Karma)</h3>
+            <ul>
+                <li>This karma decides how long we will live in one birth.</li>
+                <li>The lifespan of every living being (human, animal, celestial, infernal) is based on this karma.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> Just as a toy stops working when its battery runs out, life ends when Ayushya Karma is exhausted.</p>
+        </div>
+        <div class="screen" id="screen-11" style="display:none;">
+            <h2>5. Ayushya Karma (Part 2)</h2>
+            <h3>Types of Lifespan:</h3>
+            <ul>
+                <li>This karma determines lifespan in the four states of existence (Gati: hellish, animal, human, celestial).</li>
+                <li>According to our karmas, we get that much lifespan in that state.</li>
+                <li>Untimely death (Akalmrityu) is possible in some circumstances, but the fundamental lifespan is decided by karma.</li>
+            </ul>
+            <p class="example"><strong>Important:</strong> Doing good deeds can lead to a good lifespan and a good state of existence.</p>
+        </div>
+
+        <div class="screen" id="screen-12" style="display:none;">
+            <h2>6. Nama Karma (Part 1)</h2>
+            <h3>(Body-Determining Karma)</h3>
+            <ul>
+                <li>This karma determines our body, its shape, color, form, and species (human, animal, etc.).</li>
+                <li>Whether we get a beautiful or unattractive body is due to this karma.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> Being born as a human, boy or girl, our height, skin color, voice, etc., are due to this karma.</p>
+        </div>
+        <div class="screen" id="screen-13" style="display:none;">
+            <h2>6. Nama Karma (Part 2)</h2>
+            <h3>Various effects of Nama Karma:</h3>
+            <ul>
+                <li>Body structure (strong or weak).</li>
+                <li>Formation of senses.</li>
+                <li>Good or bad voice.</li>
+                <li>Reputation or disrepute in society (Yashkirti-Apyashkirti Nama Karma).</li>
+            </ul>
+            <p class="example"><strong>Think:</strong> There is so much diversity in the world! Everyone's body and appearance are different, due to Nama Karma.</p>
+        </div>
+
+        <div class="screen" id="screen-14" style="display:none;">
+            <h2>7. Gotra Karma (Part 1)</h2>
+            <h3>(Status-Determining Karma)</h3>
+            <ul>
+                <li>This karma determines the family or lineage into which we will be born.</li>
+                <li>Our social status, high or low, depends on this.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> The family you are born into, your parents, your home – all are influenced by Gotra Karma.</p>
+        </div>
+        <div class="screen" id="screen-15" style="display:none;">
+            <h2>7. Gotra Karma (Part 2)</h2>
+            <h3>High and Low Gotra:</h3>
+            <ul>
+                <li><strong>High Gotra:</strong> Leads to birth in good, reputable, and cultured families. Bound by humility, respecting others.</li>
+                <li><strong>Low Gotra:</strong> Leads to birth in less reputable or miserable families. Bound by arrogance, disrespecting others.</li>
+            </ul>
+            <p class="example"><strong>Lesson:</strong> One should always be humble and polite to bind High Gotra Karma.</p>
+        </div>
+
+        <div class="screen" id="screen-16" style="display:none;">
+            <h2>8. Antaraya Karma (Part 1)</h2>
+            <h3>(Obstructing Karma)</h3>
+            <ul>
+                <li>This karma creates obstacles or hindrances in doing good deeds.</li>
+                <li>Even if we wish to, we cannot perform certain good actions.</li>
+            </ul>
+            <p class="example"><strong>Example:</strong> You want to donate to a poor person, but you don't have money at that time, or someone suddenly stops you.</p>
+        </div>
+        <div class="screen" id="screen-17" style="display:none;">
+            <h2>8. Antaraya Karma (Part 2)</h2>
+            <h3>Types of Obstruction:</h3>
+            <ul>
+                <li><strong>Dana-antaraya:</strong> Obstruction in giving charity.</li>
+                <li><strong>Labha-antaraya:</strong> Obstruction in gaining (e.g., not making a profit in business).</li>
+                <li><strong>Bhoga-antaraya:</strong> Obstruction in enjoying things consumable once (like food, water).</li>
+            </ul>
+        </div>
+        <div class="screen" id="screen-18" style="display:none;">
+            <h2>8. Antaraya Karma (Part 3)</h2>
+            <h3>More Types of Obstruction:</h3>
+            <ul>
+                <li><strong>Upabhoga-antaraya:</strong> Obstruction in enjoying things consumable repeatedly (like house, clothes).</li>
+                <li><strong>Virya-antaraya:</strong> Inability to act despite having strength or enthusiasm. Not feeling inclined towards good deeds.</li>
+            </ul>
+            <p class="example"><strong>Remedy:</strong> Helping others in their good deeds and not creating obstacles for anyone helps to break Antaraya Karma.</p>
+        </div>
+
+        <div class="screen" id="screen-19" style="display:none;">
+            <h2>Let's answer some questions now!</h2>
+            <p>It's time to check how much you've learned.</p>
+        </div>
+        
+        <div class="screen quiz-screen" id="screen-20" style="display:none;">
+            <h2>Question 1:</h2>
+            <p class="quiz-question-text">Which karma covers our knowledge?</p>
+            <div class="quiz-options">
+                <button data-correct="true">Jnanavaraniya Karma</button>
+                <button>Darshanavaraniya Karma</button>
+                <button>Vedaniya Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-21" style="display:none;">
+            <h2>Question 2:</h2>
+            <p class="quiz-question-text">Being lazy in studies binds which karma?</p>
+            <div class="quiz-options">
+                <button>Mohaniya Karma</button>
+                <button data-correct="true">Jnanavaraniya Karma</button>
+                <button>Ayushya Karma</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-22" style="display:none;">
+            <h2>Question 3:</h2>
+            <p class="quiz-question-text">Which karma primarily affects our senses like seeing and hearing?</p>
+            <div class="quiz-options">
+                <button data-correct="true">Darshanavaraniya Karma</button>
+                <button>Vedaniya Karma</button>
+                <button>Nama Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-23" style="display:none;">
+            <h2>Question 4:</h2>
+            <p class="quiz-question-text">Feeling sleepy often is a type of which karma?</p>
+            <div class="quiz-options">
+                <button>Jnanavaraniya Karma</button>
+                <button>Antaraya Karma</button>
+                <button data-correct="true">Darshanavaraniya Karma (Nidra)</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-24" style="display:none;">
+            <h2>Question 5:</h2>
+            <p class="quiz-question-text">Which karma causes experiences of happiness and sadness?</p>
+            <div class="quiz-options">
+                <button>Mohaniya Karma</button>
+                <button data-correct="true">Vedaniya Karma</button>
+                <button>Gotra Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-25" style="display:none;">
+            <h2>Question 6:</h2>
+            <p class="quiz-question-text">What kind of Vedaniya karma is bound by causing pain to other beings?</p>
+            <div class="quiz-options">
+                <button data-correct="true">Asata Vedaniya</button>
+                <button>Sata Vedaniya</button>
+                <button>Both</button>
+            </div>
+        </div>
+        
+        <div class="screen quiz-screen" id="screen-26" style="display:none;">
+            <h2>Question 7:</h2>
+            <p class="quiz-question-text">Anger, ego, deceit, and greed are parts of which karma?</p>
+            <div class="quiz-options">
+                <button>Jnanavaraniya Karma</button>
+                <button data-correct="true">Mohaniya Karma (Charitra)</button>
+                <button>Antaraya Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-27" style="display:none;">
+            <h2>Question 8:</h2>
+            <p class="quiz-question-text">Which Mohaniya karma prevents faith in the true nature of the soul?</p>
+            <div class="quiz-options">
+                <button data-correct="true">Darshan Mohaniya</button>
+                <button>Charitra Mohaniya</button>
+                <button>Kashay Mohaniya</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-28" style="display:none;">
+            <h2>Question 9:</h2>
+            <p class="quiz-question-text">Which karma determines how long we will live in one birth?</p>
+            <div class="quiz-options">
+                <button>Nama Karma</button>
+                <button>Gotra Karma</button>
+                <button data-correct="true">Ayushya Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-29" style="display:none;">
+            <h2>Question 10:</h2>
+            <p class="quiz-question-text">Human, animal, celestial, infernal - what are these four for which Ayushya karma is determined?</p>
+            <div class="quiz-options">
+                <button>Passions (Kashay)</button>
+                <button data-correct="true">States of Existence (Gati)</button>
+                <button>Senses (Indriya)</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-30" style="display:none;">
+            <h2>Question 11:</h2>
+            <p class="quiz-question-text">Our body and appearance are determined by which karma?</p>
+            <div class="quiz-options">
+                <button data-correct="true">Nama Karma</button>
+                <button>Ayushya Karma</button>
+                <button>Vedaniya Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-31" style="display:none;">
+            <h2>Question 12:</h2>
+            <p class="quiz-question-text">Having a good or bad voice is related to which karma?</p>
+            <div class="quiz-options">
+                <button>Gotra Karma</button>
+                <button data-correct="true">Nama Karma</button>
+                <button>Antaraya Karma</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-32" style="display:none;">
+            <h2>Question 13:</h2>
+            <p class="quiz-question-text">Which karma determines the family we will be born into?</p>
+            <div class="quiz-options">
+                <button>Ayushya Karma</button>
+                <button>Nama Karma</button>
+                <button data-correct="true">Gotra Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-33" style="display:none;">
+            <h2>Question 14:</h2>
+            <p class="quiz-question-text">What kind of Gotra karma is bound by humility and respecting others?</p>
+            <div class="quiz-options">
+                <button data-correct="true">High Gotra</button>
+                <button>Low Gotra</button>
+                <button>Neither</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-34" style="display:none;">
+            <h2>Question 15:</h2>
+            <p class="quiz-question-text">Which karma creates obstacles in doing good deeds?</p>
+            <div class="quiz-options">
+                <button>Vedaniya Karma</button>
+                <button data-correct="true">Antaraya Karma</button>
+                <button>Mohaniya Karma</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-35" style="display:none;">
+            <h2>Question 16:</h2>
+            <p class="quiz-question-text">Being unable to give charity despite wishing to, is what type of Antaraya karma?</p>
+            <div class="quiz-options">
+                <button>Labhantaraya (Obstruction to Gain)</button>
+                <button>Viryantaraya (Obstruction to Energy)</button>
+                <button data-correct="true">Danantaraya (Obstruction to Charity)</button>
+            </div>
+        </div>
+
+        <div class="screen score-screen" id="screen-36" style="display:none;">
+            <h2>Your Score</h2>
+            <p>You answered <span id="score" class="score"></span> out of <span id="totalQuizQuestions"></span> questions correctly!</p>
+            <p id="feedbackMessage" style="font-size: clamp(1.0rem, 3vw, 1.5rem); margin-top:15px;"></p>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prevBtn" class="nav-button">←</button>
+            <button id="nextBtn" class="nav-button">→</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 0;
+        const screens = document.querySelectorAll('.screen');
+        const totalScreens = screens.length; 
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let userScore = 0;
+        const totalQuizQuestions = 16; 
+
+        function setupQuizListeners() {
+            screens.forEach((screen, screenIndex) => {
+                if (screen.classList.contains('quiz-screen')) {
+                    const options = screen.querySelectorAll('.quiz-options button');
+                    options.forEach(option => {
+                        option.addEventListener('click', () => handleAnswer(option, screenIndex));
+                    });
+                }
+            });
+        }
+        
+        function handleAnswer(selectedButton, screenIdx) {
+            const screenElement = screens[screenIdx];
+            if (screenElement.dataset.answered === 'true') return;
+
+            const buttons = screenElement.querySelectorAll('.quiz-options button');
+            buttons.forEach(btn => btn.disabled = true); 
+
+            const isCorrect = selectedButton.dataset.correct === 'true';
+
+            if (isCorrect) {
+                userScore++;
+                selectedButton.classList.add('correct');
+            } else {
+                selectedButton.classList.add('incorrect');
+                buttons.forEach(btn => {
+                    if (btn.dataset.correct === 'true') {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            screenElement.dataset.answered = 'true'; 
+            
+            setTimeout(() => {
+                nextBtn.disabled = false; 
+                if (currentScreen === totalScreens - 2) { 
+                     nextBtn.textContent = "View Score →"; 
+                }
+            }, 1000); 
+        }
+
+        function changeScreen(direction) {
+            const newScreenIndex = currentScreen + direction;
+            if (newScreenIndex >= 0 && newScreenIndex < totalScreens) {
+                const currentScreenElement = screens[currentScreen];
+                if (direction > 0 && currentScreenElement.classList.contains('quiz-screen') && currentScreenElement.dataset.answered !== 'true') {
+                    return; 
+                }
+                currentScreen = newScreenIndex;
+                showScreen(currentScreen);
+            }
+        }
+        
+        function showScreen(screenIndex) {
+            screens.forEach((screen, index) => {
+                screen.style.display = (index === screenIndex) ? 'flex' : 'none';
+                if (index === screenIndex) { 
+                    screen.scrollTop = 0;
+                }
+            });
+
+            const currentScreenElement = screens[screenIndex];
+            const isQuiz = currentScreenElement.classList.contains('quiz-screen');
+            const isScoreScreen = currentScreenElement.classList.contains('score-screen');
+            
+            prevBtn.disabled = (screenIndex === 0);
+            prevBtn.textContent = "←";  
+            prevBtn.onclick = () => changeScreen(-1); 
+
+            nextBtn.disabled = false; 
+            nextBtn.textContent = "→"; 
+            nextBtn.onclick = () => changeScreen(1); 
+
+            if (isScoreScreen) {
+                nextBtn.disabled = true;
+                prevBtn.textContent = "Restart ←"; 
+                prevBtn.onclick = restartTutorial; 
+                displayScore();
+            } else if (isQuiz) {
+                if (currentScreenElement.dataset.answered !== 'true') {
+                    nextBtn.disabled = true; 
+                } else {
+                    if (screenIndex === totalScreens - 2) { 
+                         nextBtn.textContent = "View Score →"; 
+                    }
+                }
+            }
+        }
+
+        function displayScore() {
+            document.getElementById('score').textContent = userScore;
+            document.getElementById('totalQuizQuestions').textContent = totalQuizQuestions;
+            const feedbackMessage = document.getElementById('feedbackMessage');
+            if (userScore === totalQuizQuestions) {
+                feedbackMessage.textContent = "Excellent! You answered all questions correctly!";
+                feedbackMessage.style.color = "#28a745";
+            } else if (userScore >= totalQuizQuestions / 2) {
+                feedbackMessage.textContent = "Good effort! Try a little harder.";
+                feedbackMessage.style.color = "#ffc107";
+            } else {
+                feedbackMessage.textContent = "Try again! You can do better.";
+                feedbackMessage.style.color = "#dc3545";
+            }
+        }
+
+        function restartTutorial() {
+            currentScreen = 0;
+            userScore = 0;
+            
+            screens.forEach(screen => {
+                if (screen.classList.contains('quiz-screen')) {
+                    screen.dataset.answered = 'false';
+                    const buttons = screen.querySelectorAll('.quiz-options button');
+                    buttons.forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('correct', 'incorrect');
+                    });
+                }
+            });
+            
+            showScreen(currentScreen); 
+        }
+
+        // Initial setup
+        prevBtn.onclick = () => changeScreen(-1);
+        nextBtn.onclick = () => changeScreen(1);
+        
+        setupQuizListeners(); 
+        showScreen(currentScreen); 
+
+        function adjustContainerHeight() {
+            const container = document.querySelector('.tutorial-container');
+            if (window.matchMedia("(max-height: 500px) and (orientation: landscape)").matches) {
+                 container.style.maxHeight = `${window.innerHeight * 0.98}px`;
+            } else {
+                 container.style.maxHeight = '450px'; 
+            }
+        }
+        window.addEventListener('resize', adjustContainerHeight);
+        window.addEventListener('orientationchange', adjustContainerHeight);
+        adjustContainerHeight(); 
+
+    </script>
+</body>
+</html>

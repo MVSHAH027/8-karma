@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>જૈન કર્મના સિદ્ધાંતો</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Vadodara', sans-serif; /* Gujarati font */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light Alice Blue */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
+        }
+
+        .tutorial-container {
+            width: 100%;
+            max-width: 800px; 
+            height: 100vh; 
+            max-height: 450px; 
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .screen {
+            padding: 12px 18px; 
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+            overflow-y: auto; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .screen h2 {
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem); 
+            color: #007bff; 
+            margin-bottom: 10px; 
+        }
+
+        .screen h3 { 
+            font-size: clamp(1.1rem, 3vw, 1.6rem); 
+            color: #17a2b8; 
+            margin-top: 8px; 
+            margin-bottom: 6px; 
+        }
+        
+        .screen ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0; 
+            width: 90%;
+        }
+
+        .screen ul li {
+            font-size: clamp(0.8rem, 2.5vw, 1.35rem); 
+            margin-bottom: 7px; 
+            padding: 6px; 
+            border-radius: 7px;
+            background-color: #e6f7ff; 
+            color: #0056b3; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .screen .example {
+            font-size: clamp(0.75rem, 2.3vw, 1.2rem); 
+            color: #28a745; 
+            margin-top: 7px; 
+            padding: 6px; 
+            background-color: #e6ffe6; 
+            border-left: 3px solid #28a745; 
+            border-radius: 5px;
+            width: 90%;
+        }
+        
+        .screen p { 
+            font-size: clamp(0.8rem, 2.5vw, 1.4rem); 
+            color: #333;
+            margin-bottom: 10px; 
+        }
+        
+        .screen .quiz-question-text { 
+             font-size: clamp(0.9rem, 2.8vw, 1.4rem); 
+             color: #333; 
+             margin-bottom:12px; 
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 15px; 
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            flex-shrink: 0; 
+        }
+
+        .nav-button {
+            padding: 6px 12px; 
+            font-size: clamp(1.0rem, 2.8vw, 1.3rem); 
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px; 
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,123,255,0.2); 
+            min-width: 40px; 
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .quiz-options button {
+            display: block;
+            width: 80%;
+            max-width: 270px; 
+            padding: 9px; 
+            margin: 7px auto; 
+            font-size: clamp(0.85rem, 2.6vw, 1.25rem); 
+            background-color: #5bc0de; 
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        .quiz-options button:hover {
+            background-color: #31b0d5;
+        }
+        .quiz-options button.correct {
+            background-color: #28a745; 
+        }
+        .quiz-options button.incorrect {
+            background-color: #dc3545; 
+        }
+
+        .score-screen p {
+             font-size: clamp(0.9rem, 2.8vw, 1.5rem); 
+             color: #333;
+        }
+        .score-screen .score {
+            font-size: clamp(1.4rem, 4vw, 2.0rem); 
+            color: #ffA500; 
+            font-weight: bold;
+        }
+
+        .screen:not(:first-child) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="tutorial-container">
+        <div class="screen" id="screen-0">
+            <h2>જૈન કર્મના સિદ્ધાંતોમાં આપનું સ્વાગત છે!</h2>
+            <ul>
+                <li>ચાલો, આજે આપણે કર્મો વિશે ઊંડાણપૂર્વક જાણીએ.</li>
+                <li>કર્મ શું છે અને તે આપણા જીવનને કેવી રીતે અસર કરે છે?</li>
+                <li>આ જ્ઞાનની મજેદાર સફર માટે તૈયાર છો?</li>
+            </ul>
+        </div>
+
+        <div class="screen" id="screen-1" style="display:none;">
+            <h2>૧. જ્ઞાનાવરણીય કર્મ (ભાગ ૧)</h2>
+            <h3>(જ્ઞાનને ઢાંકનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ આપણા આત્માના જ્ઞાન ગુણને ઢાંકી દે છે.</li>
+                <li>જેમ વાદળ સૂર્યને ઢાંકે છે, તેમ આ કર્મ જ્ઞાનને પ્રકાશિત થવા દેતું નથી.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> જ્યારે તમે ભણવા બેસો પણ સમજાતું ન હોય અથવા યાદ ન રહે, તે આ કર્મનો પ્રભાવ હોઈ શકે.</p>
+        </div>
+        <div class="screen" id="screen-2" style="display:none;">
+            <h2>૧. જ્ઞાનાવરણીય કર્મ (ભાગ ૨)</h2>
+            <h3>આ કર્મ કેવી રીતે બંધાય?</h3>
+            <ul>
+                <li>જ્ઞાન કે જ્ઞાનીનો અનાદર કરવાથી.</li>
+                <li>ભણવામાં આળસ કરવાથી, બીજાને ભણતા રોકવાથી.</li>
+                <li>પુસ્તકો કે જ્ઞાનના સાધનોને નુકસાન પહોંચાડવાથી.</li>
+            </ul>
+            <p class="example"><strong>સારી વાત:</strong> જ્ઞાન અને ગુરુજનોનો આદર કરવાથી આ કર્મનો પ્રભાવ ઓછો થાય છે અને જ્ઞાન જલ્દી પ્રાપ્ત થાય છે.</p>
+        </div>
+
+        <div class="screen" id="screen-3" style="display:none;">
+            <h2>૨. દર્શનાવરણીય કર્મ (ભાગ ૧)</h2>
+            <h3>(દર્શનને ઢાંકનાર કર્મ)</h3>
+            <p>આ કર્મ આપણી જોવાની અને સાંભળવાની વગેરે શક્તિઓને ઢાંકે છે.</p> 
+            <ul>
+                <li>અંધ હોવું: આ કર્મ જોવાની ક્ષમતાને ઢાંકી શકે છે.</li>
+                <li>બહેરું હોવું: તે સાંભળવાની ક્ષમતાને પણ અસર કરી શકે છે.</li>
+                <li>ઊંઘ આવવી: વધુ પડતી કે અયોગ્ય સમયે ઊંઘ આવવી તે પણ એક અસર હોઈ શકે છે.</li>
+            </ul>
+            </div>
+        <div class="screen" id="screen-4" style="display:none;">
+            <h2>૨. દર્શનાવરણીય કર્મ (ભાગ ૨)</h2>
+            <h3>આ કર્મના પ્રભાવ:</h3>
+            <ul>
+                <li>આંખે બરાબર દેખાય નહીં (ચક્ષુ દર્શનાવરણ - આંખનું દર્શન ઢંકાવું).</li>
+                <li>બીજી ઇન્દ્રિયોથી બરાબર અનુભવાય નહીં (અચક્ષુ દર્શનાવરણ - આંખ સિવાયની ઇન્દ્રિયોનું દર્શન ઢંકાવું).</li>
+                <li>નિદ્રા (ઊંઘ) પણ આ કર્મનો એક પ્રકાર છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> કોઈ પ્રાણીને અંધ કે બહેરું બનાવતું નુકસાન કરવાથી આ પ્રકારનું કર્મ બંધાઈ શકે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-5" style="display:none;">
+            <h2>૩. વેદનીય કર્મ (ભાગ ૧)</h2>
+            <h3>(વેદના ઉત્પન્ન કરનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ આપણને સુખ અને દુઃખનો અનુભવ કરાવે છે.</li>
+                <li>આપણા જીવનમાં આવતી સારી-નરસી લાગણીઓ આ કર્મને આભારી છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> એર કન્ડિશનમાં ઠંડકનો અનુભવ થવો (સાતા વેદનીય - સુખ) અને રમતાં પડી જવાથી વાગે ત્યારે દુઃખ થાય (અસાતા વેદનીય - દુઃખ).</p>
+        </div>
+        <div class="screen" id="screen-6" style="display:none;">
+            <h2>૩. વેદનીય કર્મ (ભાગ ૨)</h2>
+            <h3>સાતા અને અસાતા વેદનીય:</h3>
+            <ul>
+                <li><strong>સાતા વેદનીય:</strong> સુખદ અનુભવો કરાવે. બીજાને સુખ આપવાથી, દયા રાખવાથી બંધાય.</li>
+                <li><strong>અસાતા વેદનીય:</strong> દુઃખદ અનુભવો કરાવે. બીજાને દુઃખ આપવાથી, કઠોરતાથી બંધાય.</li>
+            </ul>
+            <p class="example"><strong>યાદ રાખો:</strong> આપણે જેવું બીજા સાથે કરીએ, તેવું જ સુખ-દુઃખ આપણને મળે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-7" style="display:none;">
+            <h2>૪. મોહનીય કર્મ (ભાગ ૧)</h2>
+            <h3>(મોહ પમાડનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ સૌથી શક્તિશાળી છે. તે આત્માને સાચો રસ્તો ભૂલાવી દે છે.</li>
+                <li>તેનાથી આપણને ખોટી વસ્તુઓ સાચી અને સાચી વસ્તુઓ ખોટી લાગે છે.</li>
+                <li>તેનાથી રાગ (પ્રેમ, લગાવ) અને દ્વેષ (ગુસ્સો, નફરત) ઉત્પન્ન થાય છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> કોઈ એક ચોકલેટ માટે ખૂબ જીદ કરવી (રાગ) અથવા કોઈ શાકભાજી બિલકુલ ન ખાવું અને ગુસ્સો કરવો (દ્વેષ).</p>
+        </div>
+        <div class="screen" id="screen-8" style="display:none;">
+            <h2>૪. મોહનીય કર્મ (ભાગ ૨)</h2>
+            <h3>દર્શન મોહનીય (શ્રદ્ધાને ભ્રમિત કરનાર):</h3>
+            <ul>
+                <li>આત્માના સાચા સ્વરૂપ પર અને સાચા ધર્મ પર શ્રદ્ધા થવા દેતું નથી.</li>
+                <li>આપણને લાગે કે "હું શરીર છું" અથવા "પૈસા જ બધું છે".</li>
+            </ul>
+            <h3>ચારિત્ર મોહનીય (આચરણને ભ્રમિત કરનાર):</h3>
+            <ul>
+                <li>આપણને સારું આચરણ કરતા રોકે છે.</li>
+                <li>ક્રોધ, માન, માયા, લોભ જેવા કષાયો આના કારણે થાય છે.</li>
+            </ul>
+        </div>
+        <div class="screen" id="screen-9" style="display:none;">
+            <h2>૪. મોહનીય કર્મ (ભાગ ૩)</h2>
+            <h3>કષાયો (ચારિત્ર મોહનીયથી ઉદ્ભવતા આવેશો):</h3>
+            <ul>
+                <li><strong>ક્રોધ (Anger):</strong> નાની નાની વાતોમાં ગુસ્સે થઈ જવું.</li>
+                <li><strong>માન (Ego):</strong> "હું જ શ્રેષ્ઠ છું" તેવું અભિમાન કરવું.</li>
+                <li><strong>માયા (Deceit):</strong> છેતરપિંડી કરવી, જુઠ્ઠું બોલવું.</li>
+                <li><strong>લોભ (Greed):</strong> વધુ ને વધુ મેળવવાની લાલચ રાખવી.</li>
+            </ul>
+            <p class="example"><strong>સાવધાન:</strong> આ કષાયો આપણી શાંતિ છીનવી લે છે અને નવા કર્મો બાંધે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-10" style="display:none;">
+            <h2>૫. આયુષ્ય કર્મ (ભાગ ૧)</h2>
+            <h3>(આયુષ્ય નક્કી કરનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ નક્કી કરે છે કે આપણે કોઈ એક જન્મમાં કેટલો સમય જીવીશું.</li>
+                <li>દરેક જીવ (મનુષ્ય, પશુ, દેવ, નારકી)નું આયુષ્ય આ કર્મના આધારે હોય છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> જેમ કોઈ રમકડાની બેટરી પૂરી થઈ જાય અને તે ચાલતું બંધ થઈ જાય, તેમ આયુષ્ય કર્મ પૂરું થતાં જીવન સમાપ્ત થાય છે.</p>
+        </div>
+        <div class="screen" id="screen-11" style="display:none;">
+            <h2>૫. આયુષ્ય કર્મ (ભાગ ૨)</h2>
+            <h3>આયુષ્યના પ્રકાર:</h3>
+            <ul>
+                <li>આ કર્મ ચાર ગતિઓ (નારક, તિર્યંચ, મનુષ્ય, દેવ) માં આયુષ્ય નક્કી કરે છે.</li>
+                <li>આપણા કર્મો પ્રમાણે આપણને તે ગતિમાં તેટલું આયુષ્ય મળે છે.</li>
+                <li>અકાળે મૃત્યુ (અકાલમૃત્યુ) પણ અમુક સંજોગોમાં શક્ય છે, પણ મૂળ આયુષ્ય તો કર્મથી જ નક્કી થાય.</li>
+            </ul>
+            <p class="example"><strong>મહત્વનું:</strong> સારા કર્મો કરવાથી સારું આયુષ્ય અને સારી ગતિ મળી શકે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-12" style="display:none;">
+            <h2>૬. નામ કર્મ (ભાગ ૧)</h2>
+            <h3>(શરીર નક્કી કરનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ આપણું શરીર, તેનો આકાર, રંગ, રૂપ, અને જાતિ (મનુષ્ય, પશુ વગેરે) નક્કી કરે છે.</li>
+                <li>આપણને કેવું શરીર મળશે, સુંદર કે અસુંદર, તે આ કર્મના લીધે હોય છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> આપણે માણસ તરીકે જન્મ્યા, છોકરો કે છોકરી બન્યા, આપણી ઊંચાઈ, ચામડીનો રંગ, અવાજ વગેરે આ કર્મના કારણે છે.</p>
+        </div>
+        <div class="screen" id="screen-13" style="display:none;">
+            <h2>૬. નામ કર્મ (ભાગ ૨)</h2>
+            <h3>નામ કર્મના વિવિધ ફળ:</h3>
+            <ul>
+                <li>શરીરનું બંધારણ (મજબૂત કે નબળું).</li>
+                <li>ઇન્દ્રિયોની રચના.</li>
+                <li>સારો કે ખરાબ અવાજ.</li>
+                <li>સમાજમાં પ્રતિષ્ઠા કે અપ્રતિષ્ઠા (યશકીર્તિ-અપયશકીર્તિ નામકર્મ).</li>
+            </ul>
+            <p class="example"><strong>વિચારો:</strong> દુનિયામાં કેટલી વિવિધતા છે! દરેકનું શરીર અને દેખાવ અલગ છે, તે નામ કર્મના કારણે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-14" style="display:none;">
+            <h2>૭. ગોત્ર કર્મ (ભાગ ૧)</h2>
+            <h3>(કુળ/સ્થિતિ નક્કી કરનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ આપણો જન્મ કયા કુળમાં કે પરિવારમાં થશે તે નક્કી કરે છે.</li>
+                <li>આપણને સમાજમાં કેવું સ્થાન મળશે, ઉચ્ચ કે નીચ, તે આના પર આધાર રાખે છે.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> તમે જે પરિવારમાં જન્મ્યા છો, તમારા માતા-પિતા, તમારું ઘર, આ બધું ગોત્ર કર્મના પ્રભાવથી છે.</p>
+        </div>
+        <div class="screen" id="screen-15" style="display:none;">
+            <h2>૭. ગોત્ર કર્મ (ભાગ ૨)</h2>
+            <h3>ઉચ્ચ અને નીચ ગોત્ર:</h3>
+            <ul>
+                <li><strong>ઉચ્ચ ગોત્ર:</strong> સારા, પ્રતિષ્ઠિત અને સંસ્કારી કુળમાં જન્મ અપાવે. નમ્રતા, બીજાનો આદર કરવાથી બંધાય.</li>
+                <li><strong>નીચ ગોત્ર:</strong> ઓછી પ્રતિષ્ઠાવાળા કે દુઃખી કુળમાં જન્મ અપાવે. અભિમાન, બીજાનો તિરસ્કાર કરવાથી બંધાય.</li>
+            </ul>
+            <p class="example"><strong>શીખ:</strong> હંમેશા નમ્ર અને વિવેકી રહેવું જોઈએ, જેથી ઉચ્ચ ગોત્ર કર્મ બંધાય.</p>
+        </div>
+
+        <div class="screen" id="screen-16" style="display:none;">
+            <h2>૮. અંતરાય કર્મ (ભાગ ૧)</h2>
+            <h3>(અડચણ ઊભી કરનાર કર્મ)</h3>
+            <ul>
+                <li>આ કર્મ સારા કામો કરવામાં અડચણ કે વિઘ્ન ઊભું કરે છે.</li>
+                <li>આપણી ઈચ્છા હોવા છતાં આપણે અમુક સારા કાર્યો કરી શકતા નથી.</li>
+            </ul>
+            <p class="example"><strong>ઉદાહરણ:</strong> તમારે કોઈ ગરીબને દાન આપવું હોય, પણ તમારી પાસે તે સમયે પૈસા જ ન હોય, અથવા કોઈ અચાનક આવીને રોકી દે.</p>
+        </div>
+        <div class="screen" id="screen-17" style="display:none;">
+            <h2>૮. અંતરાય કર્મ (ભાગ ૨)</h2>
+            <h3>અંતરાયના પ્રકાર:</h3>
+            <ul>
+                <li><strong>દાનાંતરાય:</strong> દાન આપવામાં અડચણ.</li>
+                <li><strong>લાભાંતરાય:</strong> લાભ મેળવવામાં અડચણ (જેમ કે વેપારમાં નફો ન થવો).</li>
+                <li><strong>ભોગાંતરાય:</strong> એકવાર ભોગવી શકાય તેવી વસ્તુઓ (ખોરાક, પાણી) ના ભોગવટામાં અડચણ.</li>
+            </ul>
+        </div>
+        <div class="screen" id="screen-18" style="display:none;">
+            <h2>૮. અંતરાય કર્મ (ભાગ ૩)</h2>
+            <h3>અંતરાયના વધુ પ્રકાર:</h3>
+            <ul>
+                <li><strong>ઉપભોગાંતરાય:</strong> વારંવાર ભોગવી શકાય તેવી વસ્તુઓ (ઘર, કપડાં) ના ભોગવટામાં અડચણ.</li>
+                <li><strong>વીર્યાંતરાય:</strong> શક્તિ કે ઉત્સાહ હોવા છતાં કાર્ય ન કરી શકવું. સારા કામમાં મન ન લાગવું.</li>
+            </ul>
+            <p class="example"><strong>ઉપાય:</strong> બીજાના સારા કામોમાં મદદ કરવાથી અને કોઈને અડચણ ન કરવાથી અંતરાય કર્મ તૂટે છે.</p>
+        </div>
+
+        <div class="screen" id="screen-19" style="display:none;">
+            <h2>ચાલો, હવે થોડા પ્રશ્નોના જવાબ આપીએ!</h2>
+            <p>તમે કેટલું શીખ્યા તે ચકાસવાનો સમય છે.</p>
+        </div>
+        
+        <div class="screen quiz-screen" id="screen-20" style="display:none;">
+            <h2>પ્રશ્ન ૧:</h2>
+            <p class="quiz-question-text">કયું કર્મ આપણા જ્ઞાનને ઢાંકી દે છે?</p>
+            <div class="quiz-options">
+                <button data-correct="true">જ્ઞાનાવરણીય કર્મ</button>
+                <button>દર્શનાવરણીય કર્મ</button>
+                <button>વેદનીય કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-21" style="display:none;">
+            <h2>પ્રશ્ન ૨:</h2>
+            <p class="quiz-question-text">ભણવામાં આળસ કરવાથી કયું કર્મ બંધાય છે?</p>
+            <div class="quiz-options">
+                <button>મોહનીય કર્મ</button>
+                <button data-correct="true">જ્ઞાનાવરણીય કર્મ</button>
+                <button>આયુષ્ય કર્મ</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-22" style="display:none;">
+            <h2>પ્રશ્ન ૩:</h2>
+            <p class="quiz-question-text">કયું કર્મ મુખ્યત્વે આપણી ઇન્દ્રિયો જેવી કે જોવાની અને સાંભળવાની શક્તિને અસર કરે છે?</p>
+            <div class="quiz-options">
+                <button data-correct="true">દર્શનાવરણીય કર્મ</button>
+                <button>વેદનીય કર્મ</button>
+                <button>નામ કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-23" style="display:none;">
+            <h2>પ્રશ્ન ૪:</h2>
+            <p class="quiz-question-text">વારંવાર ઊંઘ આવવી એ કયા કર્મનો એક પ્રકાર છે?</p>
+            <div class="quiz-options">
+                <button>જ્ઞાનાવરણીય કર્મ</button>
+                <button>અંતરાય કર્મ</button>
+                <button data-correct="true">દર્શનાવરણીય કર્મ (નિદ્રા)</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-24" style="display:none;">
+            <h2>પ્રશ્ન ૫:</h2>
+            <p class="quiz-question-text">સુખ અને દુઃખનો અનુભવ કયા કર્મથી થાય છે?</p>
+            <div class="quiz-options">
+                <button>મોહનીય કર્મ</button>
+                <button data-correct="true">વેદનીય કર્મ</button>
+                <button>ગોત્ર કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-25" style="display:none;">
+            <h2>પ્રશ્ન ૬:</h2>
+            <p class="quiz-question-text">બીજા જીવોને દુઃખ આપવાથી કેવું વેદનીય કર્મ બંધાય?</p>
+            <div class="quiz-options">
+                <button data-correct="true">અસાતા વેદનીય</button>
+                <button>સાતા વેદનીય</button>
+                <button>બંને</button>
+            </div>
+        </div>
+        
+        <div class="screen quiz-screen" id="screen-26" style="display:none;">
+            <h2>પ્રશ્ન ૭:</h2>
+            <p class="quiz-question-text">ક્રોધ, માન, માયા, લોભ કયા કર્મના ભાગ છે?</p>
+            <div class="quiz-options">
+                <button>જ્ઞાનાવરણીય કર્મ</button>
+                <button data-correct="true">મોહનીય કર્મ (ચારિત્ર)</button>
+                <button>અંતરાય કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-27" style="display:none;">
+            <h2>પ્રશ્ન ૮:</h2>
+            <p class="quiz-question-text">આત્માના સાચા સ્વરૂપ પર શ્રદ્ધા ન થવા દે તે કયું મોહનીય કર્મ છે?</p>
+            <div class="quiz-options">
+                <button data-correct="true">દર્શન મોહનીય</button>
+                <button>ચારિત્ર મોહનીય</button>
+                <button>કષાય મોહનીય</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-28" style="display:none;">
+            <h2>પ્રશ્ન ૯:</h2>
+            <p class="quiz-question-text">આપણે એક જન્મમાં કેટલું જીવીશું તે કયું કર્મ નક્કી કરે છે?</p>
+            <div class="quiz-options">
+                <button>નામ કર્મ</button>
+                <button>ગોત્ર કર્મ</button>
+                <button data-correct="true">આયુષ્ય કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-29" style="display:none;">
+            <h2>પ્રશ્ન ૧૦:</h2>
+            <p class="quiz-question-text">મનુષ્ય, પશુ, દેવ, નારકી - આ ચાર શું છે જેના માટે આયુષ્ય કર્મ નક્કી થાય છે?</p>
+            <div class="quiz-options">
+                <button>કષાય</button>
+                <button data-correct="true">ગતિઓ</button>
+                <button>ઇન્દ્રિયો</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-30" style="display:none;">
+            <h2>પ્રશ્ન ૧૧:</h2>
+            <p class="quiz-question-text">આપણું શરીર અને દેખાવ કયા કર્મથી નક્કી થાય છે?</p>
+            <div class="quiz-options">
+                <button data-correct="true">નામ કર્મ</button>
+                <button>આયુષ્ય કર્મ</button>
+                <button>વેદનીય કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-31" style="display:none;">
+            <h2>પ્રશ્ન ૧૨:</h2>
+            <p class="quiz-question-text">કોઈનો અવાજ સારો હોવો કે ખરાબ હોવો, તે કયા કર્મ સાથે સંબંધિત છે?</p>
+            <div class="quiz-options">
+                <button>ગોત્ર કર્મ</button>
+                <button data-correct="true">નામ કર્મ</button>
+                <button>અંતરાય કર્મ</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-32" style="display:none;">
+            <h2>પ્રશ્ન ૧૩:</h2>
+            <p class="quiz-question-text">આપણો જન્મ કયા કુટુંબમાં થશે તે કયું કર્મ નક્કી કરે છે?</p>
+            <div class="quiz-options">
+                <button>આયુષ્ય કર્મ</button>
+                <button>નામ કર્મ</button>
+                <button data-correct="true">ગોત્ર કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-33" style="display:none;">
+            <h2>પ્રશ્ન ૧૪:</h2>
+            <p class="quiz-question-text">નમ્રતા અને બીજાનો આદર કરવાથી કેવું ગોત્ર કર્મ બંધાય છે?</p>
+            <div class="quiz-options">
+                <button data-correct="true">ઉચ્ચ ગોત્ર</button>
+                <button>નીચ ગોત્ર</button>
+                <button>બંનેમાંથી કોઈ નહીં</button>
+            </div>
+        </div>
+
+        <div class="screen quiz-screen" id="screen-34" style="display:none;">
+            <h2>પ્રશ્ન ૧૫:</h2>
+            <p class="quiz-question-text">સારા કામોમાં અડચણ ઊભી કરનાર કર્મ કયું છે?</p>
+            <div class="quiz-options">
+                <button>વેદનીય કર્મ</button>
+                <button data-correct="true">અંતરાય કર્મ</button>
+                <button>મોહનીય કર્મ</button>
+            </div>
+        </div>
+        <div class="screen quiz-screen" id="screen-35" style="display:none;">
+            <h2>પ્રશ્ન ૧૬:</h2>
+            <p class="quiz-question-text">ઈચ્છા હોવા છતાં દાન ન કરી શકવું, તે કયા પ્રકારનું અંતરાય કર્મ છે?</p>
+            <div class="quiz-options">
+                <button>લાભાંતરાય</button>
+                <button>વીર્યાંતરાય</button>
+                <button data-correct="true">દાનાંતરાય</button>
+            </div>
+        </div>
+
+        <div class="screen score-screen" id="screen-36" style="display:none;">
+            <h2>તમારો સ્કોર</h2>
+            <p>તમે <span id="totalQuizQuestions"></span> માંથી <span id="score" class="score"></span> પ્રશ્નોના સાચા જવાબ આપ્યા!</p>
+            <p id="feedbackMessage" style="font-size: clamp(1.0rem, 3vw, 1.5rem); margin-top:15px;"></p>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prevBtn" class="nav-button">←</button>
+            <button id="nextBtn" class="nav-button">→</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 0;
+        const screens = document.querySelectorAll('.screen');
+        const totalScreens = screens.length; 
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let userScore = 0;
+        const totalQuizQuestions = 16; 
+
+        function setupQuizListeners() {
+            screens.forEach((screen, screenIndex) => {
+                if (screen.classList.contains('quiz-screen')) {
+                    const options = screen.querySelectorAll('.quiz-options button');
+                    options.forEach(option => {
+                        option.addEventListener('click', () => handleAnswer(option, screenIndex));
+                    });
+                }
+            });
+        }
+        
+        function handleAnswer(selectedButton, screenIdx) {
+            const screenElement = screens[screenIdx];
+            if (screenElement.dataset.answered === 'true') return;
+
+            const buttons = screenElement.querySelectorAll('.quiz-options button');
+            buttons.forEach(btn => btn.disabled = true); 
+
+            const isCorrect = selectedButton.dataset.correct === 'true';
+
+            if (isCorrect) {
+                userScore++;
+                selectedButton.classList.add('correct');
+            } else {
+                selectedButton.classList.add('incorrect');
+                buttons.forEach(btn => {
+                    if (btn.dataset.correct === 'true') {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            screenElement.dataset.answered = 'true'; 
+            
+            setTimeout(() => {
+                nextBtn.disabled = false; 
+                if (currentScreen === totalScreens - 2) { 
+                     nextBtn.textContent = "સ્કોર જુઓ →"; 
+                }
+            }, 1000); 
+        }
+
+        function changeScreen(direction) {
+            const newScreenIndex = currentScreen + direction;
+            if (newScreenIndex >= 0 && newScreenIndex < totalScreens) {
+                const currentScreenElement = screens[currentScreen];
+                if (direction > 0 && currentScreenElement.classList.contains('quiz-screen') && currentScreenElement.dataset.answered !== 'true') {
+                    return; 
+                }
+                currentScreen = newScreenIndex;
+                showScreen(currentScreen);
+            }
+        }
+        
+        function showScreen(screenIndex) {
+            screens.forEach((screen, index) => {
+                screen.style.display = (index === screenIndex) ? 'flex' : 'none';
+                if (index === screenIndex) { 
+                    screen.scrollTop = 0;
+                }
+            });
+
+            const currentScreenElement = screens[screenIndex];
+            const isQuiz = currentScreenElement.classList.contains('quiz-screen');
+            const isScoreScreen = currentScreenElement.classList.contains('score-screen');
+            
+            prevBtn.disabled = (screenIndex === 0);
+            prevBtn.textContent = "←";  
+            prevBtn.onclick = () => changeScreen(-1); 
+
+            nextBtn.disabled = false; 
+            nextBtn.textContent = "→"; 
+            nextBtn.onclick = () => changeScreen(1); 
+
+            if (isScoreScreen) {
+                nextBtn.disabled = true;
+                prevBtn.textContent = "ફરીથી શરૂ કરો ←"; 
+                prevBtn.onclick = restartTutorial; 
+                displayScore();
+            } else if (isQuiz) {
+                if (currentScreenElement.dataset.answered !== 'true') {
+                    nextBtn.disabled = true; 
+                } else {
+                    if (screenIndex === totalScreens - 2) { 
+                         nextBtn.textContent = "સ્કોર જુઓ →"; 
+                    }
+                }
+            }
+        }
+
+        function displayScore() {
+            document.getElementById('score').textContent = userScore;
+            document.getElementById('totalQuizQuestions').textContent = totalQuizQuestions;
+            const feedbackMessage = document.getElementById('feedbackMessage');
+            if (userScore === totalQuizQuestions) {
+                feedbackMessage.textContent = "ખૂબ સરસ! તમે બધા જવાબો સાચા આપ્યા!";
+                feedbackMessage.style.color = "#28a745";
+            } else if (userScore >= totalQuizQuestions / 2) {
+                feedbackMessage.textContent = "સરસ પ્રયાસ! થોડી વધુ મહેનત કરો.";
+                feedbackMessage.style.color = "#ffc107";
+            } else {
+                feedbackMessage.textContent = "ફરી પ્રયાસ કરો! તમે વધુ સારું કરી શકો છો.";
+                feedbackMessage.style.color = "#dc3545";
+            }
+        }
+
+        function restartTutorial() {
+            currentScreen = 0;
+            userScore = 0;
+            
+            screens.forEach(screen => {
+                if (screen.classList.contains('quiz-screen')) {
+                    screen.dataset.answered = 'false';
+                    const buttons = screen.querySelectorAll('.quiz-options button');
+                    buttons.forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('correct', 'incorrect');
+                    });
+                }
+            });
+            
+            showScreen(currentScreen); 
+        }
+
+        // Initial setup
+        prevBtn.onclick = () => changeScreen(-1);
+        nextBtn.onclick = () => changeScreen(1);
+        
+        setupQuizListeners(); 
+        showScreen(currentScreen); 
+
+        function adjustContainerHeight() {
+            const container = document.querySelector('.tutorial-container');
+            if (window.matchMedia("(max-height: 500px) and (orientation: landscape)").matches) {
+                 container.style.maxHeight = `${window.innerHeight * 0.98}px`;
+            } else {
+                 container.style.maxHeight = '450px'; 
+            }
+        }
+        window.addEventListener('resize', adjustContainerHeight);
+        window.addEventListener('orientationchange', adjustContainerHeight);
+        adjustContainerHeight(); 
+
+    </script>
+</body>
+</html>

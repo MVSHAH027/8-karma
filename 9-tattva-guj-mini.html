@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>નવ તત્ત્વ ટ્યુટોરિયલ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Using Arial for elegance and wide availability */
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8; /* Lighter background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .tutorial-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px; /* Increased padding */
+            border-radius: 10px; /* More rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+            box-sizing: border-box;
+        }
+        .step {
+            display: none;
+            margin-bottom: 30px; /* Increased margin */
+        }
+        .step.active {
+            display: block;
+        }
+        .step h2 {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 25px; /* Increased margin */
+            font-size: 1.8em; /* Slightly larger heading */
+            font-weight: bold;
+        }
+        .step ul {
+            list-style: none;
+            padding: 0;
+        }
+        .step li {
+            font-size: 1.6em; /* Big font size */
+            margin-bottom: 20px; /* Increased margin */
+            padding: 15px; /* Increased padding */
+            border-radius: 8px; /* More rounded corners */
+            text-align: center;
+            background-color: #eef; /* Subtle background for list items */
+            border: 1px solid #ddd; /* Light border */
+        }
+        /* Colourful fonts */
+        .step li:nth-child(1) { color: #c0392b; } /* Darker Red */
+        .step li:nth-child(2) { color: #2980b9; } /* Darker Blue */
+        .step li:nth-child(3) { color: #27ae60; } /* Darker Green */
+
+        .navigation-buttons {
+            text-align: center;
+            margin-top: 30px; /* Increased margin */
+        }
+        .navigation-buttons button {
+            padding: 12px 25px; /* Larger buttons */
+            margin: 0 10px;
+            font-size: 1.1em; /* Slightly larger font */
+            cursor: pointer;
+            border: none;
+            border-radius: 6px; /* Rounded buttons */
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+        }
+        .navigation-buttons button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6; /* Dim disabled buttons */
+        }
+        .navigation-buttons button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        .quiz-section {
+            display: none;
+            margin-top: 30px; /* Increased margin */
+        }
+        .quiz-section h2 {
+             text-align: center;
+             color: #0056b3;
+             margin-bottom: 25px; /* Adjusted margin */
+             font-size: 1.8em;
+             font-weight: bold;
+        }
+         .quiz-intro-text {
+             text-align: center;
+             margin-bottom: 25px; /* Space after intro text */
+             font-size: 1.1em;
+             color: #555;
+         }
+         .quiz-intro-text p {
+             margin: 5px 0; /* Space between intro lines */
+         }
+
+        .quiz-question-page {
+            display: none; /* Hide all question pages by default */
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9; /* Lighter background for questions */
+            border-radius: 8px;
+            border: 1px solid #eee; /* Very light border */
+        }
+        .quiz-question-page.active {
+            display: block; /* Show the active question page */
+        }
+        .quiz-question-page p {
+            font-size: 1.3em; /* Larger question font */
+            margin-bottom: 15px;
+            color: #444; /* Slightly darker text */
+            font-weight: bold;
+        }
+        .quiz-question-page label {
+            display: block;
+            margin-bottom: 10px; /* Increased space between options */
+            font-size: 1.1em; /* Larger option font */
+            color: #555;
+            cursor: pointer; /* Indicate clickable */
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease; /* Hover effect for options */
+        }
+         .quiz-question-page label:hover {
+             background-color: #eef;
+         }
+         .quiz-question-page input[type="radio"] {
+             margin-right: 10px; /* Space between radio button and text */
+         }
+
+        /* Feedback styles */
+        .correct-answer {
+            background-color: #d4edda; /* Light green */
+            border-color: #c3e6cb;
+            color: #155724; /* Dark green */
+            font-weight: bold;
+        }
+         .wrong-answer {
+            background-color: #f8d7da; /* Light red */
+            border-color: #f5c6cb;
+            color: #721c24; /* Dark red */
+            font-weight: bold;
+         }
+
+
+        .quiz-results {
+            margin-top: 30px;
+            font-size: 1.4em; /* Larger result font */
+            text-align: center;
+            color: #0056b3;
+            font-weight: bold;
+        }
+         .quiz-nav-buttons {
+             text-align: center;
+             margin-top: 20px;
+         }
+          /* Styling for the small arrow buttons */
+          .quiz-nav-buttons button {
+            padding: 5px 12px; /* Smaller padding */
+            margin: 0 5px; /* Smaller margin */
+            font-size: 1.5em; /* Adjust font size for arrows */
+            background-color: #17a2b8; /* Different color for quiz nav */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+          }
+          .quiz-nav-buttons button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+          }
+           .quiz-nav-buttons button:hover:not(:disabled) {
+             background-color: #138496;
+           }
+           #submit-quiz {
+               background-color: #28a745; /* Green for submit */
+               padding: 10px 20px; /* Standard padding for submit button */
+               font-size: 1em; /* Standard font size for submit button */
+           }
+            #submit-quiz:hover:not(:disabled) {
+                background-color: #218838;
+            }
+             #restart-tutorial {
+                 background-color: #6c757d; /* Grey for restart */
+                 padding: 10px 20px; /* Standard padding for restart button */
+                 font-size: 1em; /* Standard font size for restart button */
+             }
+              #restart-tutorial:hover:not(:disabled) {
+                 background-color: #5a6268;
+              }
+
+    </style>
+</head>
+<body>
+
+<div class="tutorial-container">
+    <div id="step-container">
+        <div class="step active" id="step-1">
+            <h2>નવ તત્ત્વ પરિચય</h2>
+            <ul>
+                <li>જૈન ધર્મ અનુસાર, જગતને સમજવા માટે નવ તત્ત્વોનું જ્ઞાન જરૂરી છે.</li>
+                <li>આ નવ તત્ત્વો જીવ અને અજીવના સંબંધો સમજાવે છે.</li>
+                <li>તે મોક્ષના માર્ગને સ્પષ્ટ કરે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-2">
+            <h2>૧. જીવ તત્ત્વ</h2>
+            <ul>
+                <li>જીવ એટલે આત્મા, જે જ્ઞાન અને ચેતનાથી યુક્ત છે.</li>
+                <li>જીવને સુખ અને દુઃખનો અનુભવ થાય છે.</li>
+                <li>જીવ નું મુખ્ય લક્ષણ 'જોવું એટલે દર્શન' અને 'જાણવું એટલે જ્ઞાન' છે.</li>
+            </ul>
+        </div>
+
+         <div class="step" id="step-3">
+            <h2>જીવ તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>મનુષ્યો, પશુ-પક્ષીઓ, સૂક્ષ્મ જીવાણુઓ જીવ છે.</li>
+                <li>વૃક્ષો અને વનસ્પતિ પણ જીવ છે.</li>
+                <li>જીવ વિવિધ ગતિઓમાં ભ્રમણ કરે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-4">
+            <h2>૨. અજીવ તત્ત્વ</h2>
+            <ul>
+                <li>જેમાં ચેતના નથી, જે જીવિત નથી તે અજીવ છે.</li>
+                <li>અજીવ સુખ કે દુઃખનો અનુભવ કરી શકતો નથી.</li>
+                <li>અજીવના મુખ્ય પાંચ પ્રકાર છે: પુદ્ગલ (દ્રવ્ય), ધર્માસ્તિકાય, અધર્માસ્તિકાય, આકાશાસ્તિકાય, કાળ.</li>
+            </ul>
+        </div>
+
+         <div class="step" id="step-5">
+            <h2>અજીવ તત્ત્વ: પુદ્ગલ (દ્રવ્ય)</h2>
+            <ul>
+                <li>પુદ્ગલ (દ્રવ્ય) એટલે ભૌતિક પદાર્થ, જે રૂપ, રસ, ગંધ અને સ્પર્શ વાળા હોય છે.</li>
+                <li>આપણી આસપાસની મોટાભાગની વસ્તુઓ પુદ્ગલ (દ્રવ્ય) છે.</li>
+                <li>ઘર, હાર, ગાડી, રમકડાં, પેન્સિલ, ટેબલ, ખુરશી પુદ્ગલ (દ્રવ્ય)ના ઉદાહરણ છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-6">
+            <h2>૩. પુણ્ય તત્ત્વ</h2>
+            <ul>
+                <li>શુભ કર્મો કરવાથી પુણ્ય બંધાય છે.</li>
+                <li>પુણ્યના ઉદયથી સુખ, સારું સ્વાસ્થ્ય અને અનુકૂળ સંયોગો મળે છે.</li>
+                <li>પુણ્ય મોક્ષનું સીધું કારણ નથી, પણ મોક્ષ માર્ગમાં સહાયક થઈ શકે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-7">
+            <h2>પુણ્ય તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>કોઈ જરૂરિયાતમંદને મદદ કરવી એ પુણ્યનું કાર્ય છે.</li>
+                <li>ધાર્મિક કાર્યો કરવા અને દાન આપવું એ પુણ્ય છે.</li>
+                <li>સારી ભાવના રાખવી અને બીજાનું ભલું ઈચ્છવું એ પણ પુણ્ય છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-8">
+            <h2>૪. પાપ તત્ત્વ</h2>
+            <ul>
+                <li>અશુભ કર્મો કરવાથી પાપ બંધાય છે.</li>
+                <li>પાપના ઉદયથી દુઃખ, બીમારી અને પ્રતિકૂળ સંયોગો મળે છે.</li>
+                <li>પાપ સંસારમાં ભ્રમણ કરાવે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-9">
+            <h2>પાપ તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>કોઈ જીવને દુઃખ પહોંચાડવું કે હિંસા કરવી એ પાપ છે.</li>
+                <li>જુઠું બોલવું, ચોરી કરવી, ક્રોધ કરવો એ પાપ છે.</li>
+                <li>ખરાબ ભાવના રાખવી અને બીજાનું ખરાબ ઈચ્છવું એ પણ પાપ છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-10">
+            <h2>૫. આશ્રવ તત્ત્વ</h2>
+            <ul>
+                <li>જેના દ્વારા આત્મામાં કર્મો આવે છે તે આશ્રવ છે.</li>
+                <li>મિથ્યાત્વ, અવિરતિ, કષાય, યોગ અને પ્રમાદ એ આશ્રવના મુખ્ય કારણો છે.</li>
+                <li>જેમ નાવમાં છિદ્રોથી પાણી આવે તેમ આશ્રવથી કર્મો આવે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-11">
+            <h2>આશ્રવ તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>સાચા તત્ત્વમાં શ્રદ્ધા ન હોવી (મિથ્યાત્વ) એ આશ્રવ છે.</li>
+                <li>વ્રત કે નિયમ ન પાળવા (અવિરતિ) એ આશ્રવ છે.</li>
+                <li>ક્રોધ, માન, માયા, લોભ (કષાય) એ આશ્રવ છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-12">
+            <h2>૬. સંવર તત્ત્વ</h2>
+            <ul>
+                <li>આત્મામાં કર્મોના આવતા પ્રવાહને રોકવો તે સંવર છે.</li>
+                <li>સંયમ, વ્રત, સમિતિ અને ગુપ્તિ દ્વારા સંવર થાય છે.</li>
+                <li>જેમ નાવના છિદ્રો બંધ કરવાથી પાણી આવતું અટકે તેમ સંવરથી કર્મો અટકે છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-13">
+            <h2>સંવર તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>મન, વચન અને કાયાને વશમાં રાખવા એ સંવર છે.</li>
+                <li>પાંચ મહાવ્રત અને અણુવ્રત પાળવા એ સંવર છે.</li>
+                <li>ભાવનાઓ ભાવવી અને પરિષહો સહન કરવા એ સંવર છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-14">
+            <h2>૭. નિર્જરા તત્ત્વ</h2>
+            <ul>
+                <li>આત્મા સાથે બંધાયેલા જૂના કર્મોને ખેરવી નાખવા તે નિર્જરા છે.</li>
+                <li>તપસ્યા, પ્રાયશ્ચિત્ત અને ભાવના દ્વારા નિર્જરા થાય છે.</li>
+                <li>જેમ નાવમાંથી પાણી ઉલેચીને બહાર કાઢીએ તેમ નિર્જરાથી કર્મો દૂર થાય છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-15">
+            <h2>નિર્જરા તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>ઉપવાસ કરવા અને ઓછું ખાવું (બાહ્ય તપ) એ નિર્જરા છે.</li>
+                <li>પ્રાયશ્ચિત્ત કરવું અને ગુરુની સેવા કરવી (અભ્યંતર તપ) એ નિર્જરા છે.</li>
+                <li>ધર્મ ધ્યાન કરવું અને સમતાભાવ રાખવો એ નિર્જરા છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-16">
+            <h2>૮. બંધ તત્ત્વ</h2>
+            <ul>
+                <li>આત્માના પ્રદેશો સાથે કર્મોનું ચોંટી જવું તે બંધ છે.</li>
+                <li>આશ્રવના કારણે બંધ થાય છે.</li>
+                <li>જેમ નાવમાં પાણી ભરાય અને નાવ ભારે થાય તેમ બંધથી આત્મા કર્મોથી ભારે થાય છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-17">
+            <h2>બંધ તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>ક્રોધ કરવાથી કર્મોનો બંધ થાય છે.</li>
+                <li>લોભ કરવાથી કર્મોનો બંધ થાય છે.</li>
+                <li>કોઈને છેતરવાથી કર્મોનો બંધ થાય છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-18">
+            <h2>૯. મોક્ષ તત્ત્વ</h2>
+            <ul>
+                <li>સર્વ કર્મોનો સંપૂર્ણ નાશ થવો તે મોક્ષ છે.</li>
+                <li>મોક્ષ એ આત્માની શુદ્ધ અને મુક્ત અવસ્થા છે.</li>
+                <li>જેમ નાવમાંથી બધું પાણી નીકળી જાય અને નાવ કિનારે પહોંચે તેમ મોક્ષથી આત્મા મુક્ત થાય છે.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step-19">
+            <h2>મોક્ષ તત્ત્વ: ઉદાહરણ</h2>
+            <ul>
+                <li>સિદ્ધ ભગવંતો મોક્ષ પામેલા આત્માઓ છે.</li>
+                <li>તેઓ સર્વ દુઃખોથી મુક્ત થઈ અનંત સુખમાં બિરાજે છે.</li>
+                <li>મોક્ષ એ જીવનનું અંતિમ અને સર્વોચ્ચ લક્ષ્ય છે.</li>
+            </ul>
+        </div>
+
+         <div class="step" id="step-20">
+             <h2>નવ તત્ત્વ ક્વિઝ</h2>
+            <div class="quiz-intro-text">
+                <p>ચાલો, જોઈએ કે તમે નવ તત્ત્વ વિશે કેટલું શીખ્યા!</p>
+                <p>દરેક પ્રશ્નનો સાચો જવાબ પસંદ કરો.</p>
+                <p>શુભકામનાઓ!</p>
+            </div>
+        </div>
+
+
+         <div class="quiz-section" id="quiz-section">
+             <div id="quiz-questions-container">
+                </div>
+             <div class="quiz-nav-buttons">
+                 <button id="prev-question" disabled>&larr;</button>
+                 <button id="next-question">&rarr;</button>
+                 <button id="submit-quiz" style="display:none;">ક્વિઝ સબમિટ કરો</button>
+             </div>
+            <div class="quiz-results" id="quiz-results">
+                </div>
+             <div class="navigation-buttons">
+                 <button id="restart-tutorial" style="display:none;">ફરી શરૂ કરો</button>
+             </div>
+        </div>
+
+    </div>
+
+    <div class="navigation-buttons" id="tutorial-nav">
+        <button id="prev-step" disabled>પાછળ</button>
+        <button id="next-step">આગળ</button>
+    </div>
+</div>
+
+<script>
+    const steps = document.querySelectorAll('.step');
+    const prevBtn = document.getElementById('prev-step');
+    const nextBtn = document.getElementById('next-step');
+
+    const quizSection = document.getElementById('quiz-section');
+    const quizQuestionsContainer = document.getElementById('quiz-questions-container');
+    const prevQuestionBtn = document.getElementById('prev-question');
+    const nextQuestionBtn = document.getElementById('next-question');
+    const submitQuizBtn = document.getElementById('submit-quiz');
+    const quizResultsDiv = document.getElementById('quiz-results');
+    const restartTutorialBtn = document.getElementById('restart-tutorial');
+    const tutorialNavDiv = document.getElementById('tutorial-nav');
+
+
+    let currentStepIndex = 0;
+    let currentQuizQuestionIndex = 0;
+    let score = 0; // Initialize score
+
+    // Quiz Questions (2 per tattva = 18 questions)
+    const quizQuestions = [
+        // Jiva (જીવ)
+        { question: "જેમાં જ્ઞાન અને ચેતના છે તે કયું તત્ત્વ છે?", options: ["અજીવ", "જીવ", "પુદ્ગલ (દ્રવ્ય)", "કાળ"], answer: 1 },
+        { question: "જીવનું મુખ્ય લક્ષણ શું છે?", options: ["શરીર", "'જોવું એટલે દર્શન' અને 'જાણવું એટલે જ્ઞાન'", "ઇન્દ્રિયો", "શ્વાસ"], answer: 1 },
+        // Ajiva (અજીવ)
+        { question: "જેમાં ચેતના નથી અને જે જીવિત નથી તે કયું તત્ત્વ છે?", options: ["જીવ", "અજીવ", "આશ્રવ", "સંવર"], answer: 1 },
+        { question: "ઘર, ગાડી, રમકડાં જેવા ભૌતિક પદાર્થો અજીવના કયા પ્રકારમાં આવે છે?", options: ["ધર્માસ્તિકાય", "પુદ્ગલ (દ્રવ્ય)", "આકાશાસ્તિકાય", "કાળ"], answer: 1 },
+        // Punya (પુણ્ય)
+        { question: "શુભ કર્મો કરવાથી કયું તત્ત્વ બંધાય છે?", options: ["પાપ", "આશ્રવ", "પુણ્ય", "બંધ"], answer: 2 },
+        { question: "પુણ્યના ઉદયથી શાની પ્રાપ્તિ થાય છે?", options: ["દુઃખ અને બીમારી", "સુખ અને અનુકૂળ સંયોગો", "કર્મોનો નાશ", "મિથ્યાત્વ"], answer: 1 },
+        // Papa (પાપ)
+        { question: "અશુભ કર્મો કરવાથી કયું તત્ત્વ બંધાય છે?", options: ["પુણ્ય", "સંવર", "નિર્જરા", "પાપ"], answer: 3 },
+        { question: "પાપના ઉદયથી શાની પ્રાપ્તિ થાય છે?", options: ["સુખ અને સારું સ્વાસ્થ્ય", "કર્મોનો નાશ", "દુઃખ અને પ્રતિકૂળ સંયોગો", "મોક્ષ"], answer: 2 },
+         // Asrav (આશ્રવ)
+        { question: "જેના દ્વારા આત્મામાં કર્મો આવે છે તે કયું તત્ત્વ છે?", options: ["સંવર", "નિર્જરા", "આશ્રવ", "મોક્ષ"], answer: 2 },
+        { question: "મિથ્યાત્વ, અવિરતિ, કષાય, યોગ અને પ્રમાદ એ કયા તત્ત્વના મુખ્ય કારણો છે?", options: ["સંવર", "નિર્જરા", "બંધ", "આશ્રવ"], answer: 3 },
+        // Samvar (સંવર)
+        { question: "આત્મામાં કર્મોના આવતા પ્રવાહને રોકવો તે કયું તત્ત્વ છે?", options: ["આશ્રવ", "બંધ", "સંવર", "નિર્જરા"], answer: 2 },
+        { question: "સંયમ, વ્રત, સમિતિ અને ગુપ્તિ દ્વારા કયું તત્ત્વ થાય છે?", options: ["આશ્રવ", "બંધ", "સંવર", "પાપ"], answer: 2 },
+        // Nirjara (નિર્જરા)
+        { question: "આત્મા સાથે બંધાયેલા જૂના કર્મોને ખેરવી નાખવા તે કયું તત્ત્વ છે?", options: ["બંધ", "નિર્જરા", "મોક્ષ", "આશ્રવ"], answer: 1 },
+        { question: "તપસ્યા, પ્રાયશ્ચિત્ત અને ભાવના દ્વારા કયું તત્ત્વ થાય છે?", options: ["આશ્રવ", "બંધ", "સંવર", "નિર્જરા"], answer: 3 },
+        // Bandha (બંધ)
+        { question: "આત્માના પ્રદેશો સાથે કર્મોનું ચોંટી જવું તે કયું તત્ત્વ છે?", options: ["આશ્રવ", "સંવર", "નિર્જરા", "બંધ"], answer: 3 },
+        { question: "આશ્રવના કારણે કયું તત્ત્વ થાય છે?", options: ["સંવર", "નિર્જરા", "મોક્ષ", "બંધ"], answer: 3 },
+        // Moksha (મોક્ષ)
+        { question: "સર્વ કર્મોનો સંપૂર્ણ નાશ થવો તે કયું તત્ત્વ છે?", options: ["બંધ", "નિર્જરા", "મોક્ષ", "સંવર"], answer: 2 },
+        { question: "મોક્ષ એ આત્માની કઈ અવસ્થા છે?", options: ["બંધ અવસ્થા", "સંસારી અવસ્થા", "શુદ્ધ અને મુક્ત અવસ્થા", "આશ્રવ અવસ્થા"], answer: 2 }
+    ];
+
+    // Function to display the current step
+    function showStep(index) {
+        steps.forEach((step, i) => {
+            step.classList.remove('active');
+        });
+        if (steps[index]) {
+            steps[index].classList.add('active');
+        }
+        updateNavigationButtons();
+    }
+
+    // Function to update tutorial navigation button states
+    function updateNavigationButtons() {
+        const totalTutorialSteps = steps.length;
+
+        prevBtn.disabled = currentStepIndex === 0;
+        // The last tutorial step is now the quiz introduction
+        nextBtn.disabled = currentStepIndex === totalTutorialSteps - 1;
+
+        // Hide tutorial nav and show quiz section after the quiz introduction step
+        if (currentStepIndex === totalTutorialSteps - 1) {
+            tutorialNavDiv.style.display = 'none';
+            quizSection.style.display = 'block';
+            loadQuizQuestions(); // Load quiz questions when quiz section is shown
+            showQuizQuestion(currentQuizQuestionIndex); // Show the first quiz question
+        } else {
+             tutorialNavDiv.style.display = 'flex'; // Use flexbox for centering
+             tutorialNavDiv.style.justifyContent = 'center';
+             quizSection.style.display = 'none';
+        }
+         // Hide restart button until quiz is submitted
+        restartTutorialBtn.style.display = 'none';
+        quizResultsDiv.textContent = ''; // Clear previous results
+    }
+
+    // Event listeners for tutorial navigation buttons
+    nextBtn.addEventListener('click', () => {
+        const totalTutorialSteps = steps.length;
+        if (currentStepIndex < totalTutorialSteps - 1) {
+            currentStepIndex++;
+            showStep(currentStepIndex);
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentStepIndex > 0) {
+            currentStepIndex--;
+            showStep(currentStepIndex);
+        }
+    });
+
+    // Function to load quiz questions into individual pages
+    function loadQuizQuestions() {
+        quizQuestionsContainer.innerHTML = ''; // Clear previous questions
+        quizQuestions.forEach((q, index) => {
+            const questionPage = document.createElement('div');
+            questionPage.classList.add('quiz-question-page');
+            questionPage.id = `quiz-q-${index}`;
+            questionPage.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+            q.options.forEach((option, optionIndex) => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="radio" name="q${index}" value="${optionIndex}"> ${option}`;
+                label.addEventListener('click', () => handleAnswerSelection(index, optionIndex, label)); // Add click listener
+                questionPage.appendChild(label);
+            });
+            quizQuestionsContainer.appendChild(questionPage);
+        });
+    }
+
+    // Function to handle answer selection feedback
+    function handleAnswerSelection(questionIndex, selectedOptionIndex, selectedLabel) {
+        const correctAnswerIndex = quizQuestions[questionIndex].answer;
+        const options = quizQuestionsContainer.querySelectorAll(`#quiz-q-${questionIndex} label`);
+        const radioButtons = quizQuestionsContainer.querySelectorAll(`#quiz-q-${questionIndex} input[type="radio"]`);
+
+        // Disable all radio buttons for this question after selection
+        radioButtons.forEach(radio => radio.disabled = true);
+
+        if (selectedOptionIndex === correctAnswerIndex) {
+            selectedLabel.classList.add('correct-answer');
+            // Score is updated only on first correct answer for a question
+            if (!selectedLabel.dataset.scored) {
+                 score++;
+                 selectedLabel.dataset.scored = 'true'; // Mark as scored
+            }
+        } else {
+            selectedLabel.classList.add('wrong-answer');
+            // Highlight the correct answer
+            options[correctAnswerIndex].classList.add('correct-answer');
+        }
+         // Update score display immediately (optional, could wait until end)
+         // quizResultsDiv.textContent = `Current Score: ${score}`;
+    }
+
+
+    // Function to display a specific quiz question page
+    function showQuizQuestion(index) {
+        const questionPages = quizQuestionsContainer.querySelectorAll('.quiz-question-page');
+        questionPages.forEach((page, i) => {
+            page.classList.remove('active');
+        });
+        if (questionPages[index]) {
+            questionPages[index].classList.add('active');
+        }
+        updateQuizNavigationButtons();
+    }
+
+    // Function to update quiz navigation button states
+    function updateQuizNavigationButtons() {
+        prevQuestionBtn.disabled = currentQuizQuestionIndex === 0;
+        nextQuestionBtn.disabled = currentQuizQuestionIndex === quizQuestions.length - 1;
+
+        // Show submit button only on the last question
+        if (currentQuizQuestionIndex === quizQuestions.length - 1) {
+            submitQuizBtn.style.display = 'inline-block';
+            nextQuestionBtn.style.display = 'none';
+        } else {
+            submitQuizBtn.style.display = 'none';
+            nextQuestionBtn.style.display = 'inline-block';
+        }
+    }
+
+    // Event listeners for quiz navigation buttons
+    nextQuestionBtn.addEventListener('click', () => {
+        if (currentQuizQuestionIndex < quizQuestions.length - 1) {
+            currentQuizQuestionIndex++;
+            showQuizQuestion(currentQuizQuestionIndex);
+        }
+    });
+
+    prevQuestionBtn.addEventListener('click', () => {
+        if (currentQuizQuestionIndex > 0) {
+            currentQuizQuestionIndex--;
+            showQuizQuestion(currentQuizQuestionIndex);
+        }
+    });
+
+    // Event listener for quiz submission
+    submitQuizBtn.addEventListener('click', () => {
+        // Score is updated immediately on selection, so just display the final score
+        quizResultsDiv.textContent = `તમારો સ્કોર: ${score} / ${quizQuestions.length}`;
+        submitQuizBtn.style.display = 'none'; // Hide submit button after submission
+        prevQuestionBtn.style.display = 'none'; // Hide quiz nav buttons
+        nextQuestionBtn.style.display = 'none';
+        restartTutorialBtn.style.display = 'inline-block'; // Show restart button
+
+         // Ensure all radio buttons are disabled after submission
+         quizQuestionsContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+             radio.disabled = true;
+         });
+    });
+
+    // Event listener for restart button
+    restartTutorialBtn.addEventListener('click', () => {
+        currentStepIndex = 0;
+        currentQuizQuestionIndex = 0; // Reset quiz question index
+        score = 0; // Reset score
+        showStep(currentStepIndex);
+        quizSection.style.display = 'none';
+        tutorialNavDiv.style.display = 'flex'; // Show tutorial nav
+        prevBtn.disabled = true;
+        nextBtn.style.display = 'inline-block';
+        restartTutorialBtn.style.display = 'none';
+        quizResultsDiv.textContent = '';
+        // Reset radio buttons and enable them, remove feedback classes
+        quizQuestionsContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+            radio.disabled = false;
+        });
+         quizQuestionsContainer.querySelectorAll('label').forEach(label => {
+             label.classList.remove('correct-answer', 'wrong-answer');
+             delete label.dataset.scored; // Remove scored marker
+         });
+
+         // Ensure quiz nav buttons are reset for the start of the quiz
+        prevQuestionBtn.style.display = 'inline-block';
+        nextQuestionBtn.style.display = 'inline-block';
+        updateQuizNavigationButtons(); // Update quiz nav button states for the first question
+    });
+
+
+    // Initialize the tutorial
+    showStep(currentStepIndex);
+
+</script>
+
+</body>
+</html>
